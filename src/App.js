@@ -16,10 +16,10 @@ function App() {
     }
 
     try {
-      
       const response = await api.get(`${input}/json`)
       setCep(response.data)
       setInput("")
+
     } catch {
       alert("Erro!!")
       setInput("")
@@ -42,9 +42,18 @@ function App() {
       {Object.keys(cep).length > 0 && (
         <main className="main">
         <h2>CEP: {cep.cep}</h2>
+
+        {Object.keys(cep.logradouro).length > 0 && (
         <span>{cep.logradouro}</span>
-        <span>Complemento: {cep.complemento}</span>
-        <span>Bairro: {cep.bairro}</span>
+        )}
+        {Object.keys(cep.complemento).length > 0 && (
+          <span>Complemento: {cep.complemento}</span>
+        )}
+
+        {Object.keys(cep.bairro).length > 0 && (
+          <span>Bairro: {cep.bairro}</span>
+        )}
+
         <span>{cep.localidade} - {cep.uf}</span>
       </main>
       )}
